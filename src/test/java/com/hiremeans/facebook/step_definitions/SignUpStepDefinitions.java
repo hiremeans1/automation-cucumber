@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.Select;
 
 public class SignUpStepDefinitions {
 
-    WebDriver driver = new ChromeDriver();
+
 
     {
         OsUtils osUtils = new OsUtils();
@@ -23,6 +23,8 @@ public class SignUpStepDefinitions {
             System.setProperty("webdriver.chrome.driver", "chromedriver-windows.exe");
         }
     }
+
+    WebDriver driver = new ChromeDriver();
 
 
     public SignUpStepDefinitions() {
