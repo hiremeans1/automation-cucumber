@@ -20,7 +20,7 @@ public class SignUpStepDefinitions {
         if (osUtils.isMacOs()) {
             System.setProperty("webdriver.chrome.driver", "chromedriver-mac");
         } else if (osUtils.isWindowsOS()) {
-            System.setProperty("webdriver.chrome.driver", "chromedriver-windows.exe");
+            System.setProperty("webdriver.chrome.driver", "chromedriver-windows-81.exe");
         }
     }
 
