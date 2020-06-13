@@ -63,9 +63,6 @@ dependencies {
     //testCompile 'com.opera:operadriver:1.5'
     //testCompile 'com.codeborne:phantomjsdriver:1.2.1'
     testCompile 'org.fluentlenium:fluentlenium-core:0.10.2'
-
-
-
-
+    testImplementation 'com.aventstack:extentreports:3.0.2'
 
 }
