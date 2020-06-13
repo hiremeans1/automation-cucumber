@@ -18,9 +18,9 @@ public class SignUpStepDefinitions {
         OsUtils osUtils = new OsUtils();
 
         if (osUtils.isMacOs()) {
-            System.setProperty("webdriver.chrome.driver", "chromedriver-mac");
+            System.setProperty("webdriver.chrome.driver", "chromedriver-mac-83");
         } else if (osUtils.isWindowsOS()) {
-            System.setProperty("webdriver.chrome.driver", "chromedriver-windows-81.exe");
+            System.setProperty("webdriver.chrome.driver", "chromedriver-windows-83.exe");
         }
     }
 
@@ -32,7 +32,7 @@ public class SignUpStepDefinitions {
     }
 
     @Given("fill up all the required fields to create an account")
-    public void fillUpAllTheRequiredFieldsToCreateAnAccount() {
+    public void fillUpAllTheRequiredFieldsToCreateAnAccount() throws InterruptedException {
 
 
         driver.get("https://www.facebook.com/"); // Facebook site
@@ -59,8 +59,9 @@ public class SignUpStepDefinitions {
         Select yearSelector = new Select(yearElement);
         yearSelector.selectByValue("1985");
 
+
         //selecting the gender radio
-        driver.findElement(By.cssSelector("#u_0_z > span:nth-child(2) > label")).click();
+        driver.findElement(By.xpath("//*[@id=\"u_0_7\"]")).click();
 
 
     }
