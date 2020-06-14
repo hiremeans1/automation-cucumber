@@ -8,17 +8,14 @@ import cucumber.api.java.en.Then;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class EpaSteps {
+import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-    CommonSteps commonSteps = new CommonSteps();
-    WebDriver driver = commonSteps.getDriver();
-    @FindBy(how = How.XPATH, using = "//input[@id='search-box']")
-    private WebElement searchBar;
-    @FindBy(how = How.XPATH, using = "//button[@class='epa-search-button']")
-    private WebElement searchButton;
+public class EpaSteps {
 
     {
         OsUtils osUtils = new OsUtils();
@@ -29,6 +26,15 @@ public class EpaSteps {
             System.setProperty("webdriver.chrome.driver", "chromedriver-windows-83.exe");
         }
     }
+
+    CommonSteps commonSteps = new CommonSteps();
+    WebDriver driver = commonSteps.getDriver();
+    @FindBy(how = How.XPATH, using = "//input[@id='search-box']")
+    private WebElement searchBar;
+    @FindBy(how = How.XPATH, using = "//button[@class='epa-search-button']")
+    private WebElement searchButton;
+
+
 
     public EpaSteps() {
         // no args const
@@ -41,7 +47,7 @@ public class EpaSteps {
 
     @Then("^\"([^\"]*)\" is displayed$")
     public void isDisplayed(String arg0) throws Throwable {
-        driver.findElement(By.tagName("body")).getText().contains(arg0);
+        assertTrue(driver.findElement(By.tagName("body")).getText().contains(arg0));
     }
 
     @And("^I click on a \"([^\"]*)\"$")
@@ -51,7 +57,12 @@ public class EpaSteps {
 
     @And("^I shall see text with \"([^\"]*)\"$")
     public void iShallSeeTextWith(String arg0) throws Throwable {
-        driver.findElement(By.tagName("body")).getText().contains(arg0);
+       assertTrue(driver.findElement(By.tagName("body")).getText().contains(arg0));
+
+
+       //System.out.println(">>>>> tag name is :"+driver.findElement(By.xpath("//input[@id='search-box']")));
+       //assertEquals("input",driver.findElement(By.xpath("//input[@id='search-box']")));
+
     }
 
     @After

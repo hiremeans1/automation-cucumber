@@ -45,10 +45,14 @@ dependencies {
     testCompile 'net.serenity-bdd:serenity-cucumber:1.1.2'
     testCompile 'info.cukes:cucumber-junit:1.2.4'
     testCompile 'info.cukes:cucumber-java:1.2.4'
+    testImplementation 'io.cucumber:cucumber-core:4.3.0'
+    testImplementation 'io.cucumber:cucumber-java:4.3.0'
+    testImplementation 'io.cucumber:cucumber-java8:6.1.0'
+    testImplementation 'io.cucumber:cucumber-junit:4.3.0'
     //testCompile 'org.jbehave:jbehave-core:4.0.4'
     //testCompile 'de.codecentric:jbehave-junit-runner:1.1.0'
     //testCompile 'net.serenity-bdd:serenity-jbehave:1.1.0'
-    testCompile 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
     testCompile 'org.slf4j:slf4j-simple:1.7.12'
     testCompile 'org.slf4j:slf4j-api:1.7.12'
     testCompile 'org.assertj:assertj-core:3.1.0'
@@ -66,3 +70,30 @@ dependencies {
     testImplementation 'com.aventstack:extentreports:3.0.2'
 
 }
+
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+task cucumber(type: JavaExec){
+
+    dependsOn  assemble, compileTestJava
+
+    systemProperty "cucumber.options","--tags @US2123"
+
+    ignoreExitValue=true
+
+    classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+
+    args = ['--threads','1',
+            '-g','com.hiremeans.stepDefinition',
+            '-d','--no-dry-run',
+            '-m','--monochrome',
+            '-s','--strict',
+            'src/test/resources/']
+
+}
+

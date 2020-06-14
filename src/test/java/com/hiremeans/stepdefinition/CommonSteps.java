@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class CommonSteps {
 
 
-    protected WebDriver driver = new ChromeDriver();
+    public WebDriver driver = new ChromeDriver();
     public WebDriverWait webDriverWait = new WebDriverWait(this.driver, 10);
 
     public WebDriver getDriver() {
